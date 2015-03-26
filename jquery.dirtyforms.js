@@ -470,6 +470,9 @@ if (typeof jQuery == 'undefined') throw ("jQuery Required");
 
 	var decidingContinue = function(ev){
 		window.onbeforeunload = null; // fix for chrome
+        // hotfix for showing the dialog twice in Chrome
+        // https://github.com/snikch/jquery.dirtyforms/issues/49
+        $(window).unbind('beforeunload');
 		ev.preventDefault();
 		settings.dialogStash = false;
 		$(document).trigger('decidingcontinued.dirtyforms');
